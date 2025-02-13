@@ -61,15 +61,47 @@ video {
     animation: fadeIn 2s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+
+.falling-item {
+    position: absolute;
+    font-size: 30px;
+    top: -50px;
+    animation: fall linear infinite;
 }
 
 
+@keyframes fall {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+
+/* Animasi Bunga dan Coklat Jatuh */
+.falling-item {
+    position: absolute;
+    font-size: 30px;
+    top: -50px; /* Memulai animasi dari atas */
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fall linear infinite;
+}
+
+/* Keyframes untuk membuat efek jatuh */
+@keyframes fall {
+    0% { 
+        transform: translateY(0); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: translateY(100vh); /* Turun sampai ke bawah layar */
+        opacity: 0; 
+    }
+}
+
+/* Menempatkan bunga dan coklat secara acak di atas */
 @media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Biar teks dan GIF jadi berurutan di HP */
-        text-align: center;
+    .falling-item {
+        left: calc(10% + 80% * var(--random-x)); /* Agar posisinya acak di layar */
+        animation-duration: calc(3s + 2s * var(--random-speed)); /* Kecepatan acak */
     }
 }
